@@ -132,15 +132,15 @@ function Hero() {
             </div>
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <h1 className=" display-6  display-lg-6 lh-base text-center">
+                <h1 className=" display-6  fw-bolder display-lg-6 lh-base text-center">
                   BSECURE CREDIT AND INVESTMENT ADVISORY SERVICES
                 </h1>
-                <p className="text-light p-3 text-center lh-base mb-5">
+                <p className="text-light p-3  text-center lh-base mb-5">
                   " EMPOWERING YOUR FINANCIAL FUTURE "
                 </p>
               </div>
               <div className="carousel-item">
-                <h1 className=" display-6  display-lg-3 lh-base text-center ">
+                <h1 className=" display-6 fw-bolder display-lg-3 lh-base text-center ">
                   {""} WE BRING THE BANKS TO YOU {""}
                 </h1>
 
@@ -151,7 +151,7 @@ function Hero() {
                 </p>
               </div>
               <div className="carousel-item">
-                <h1 className=" display-6  display-lg-3 lh-base text-center">
+                <h1 className=" display-6  display-lg-3 fw-bolder lh-base text-center">
                   OUR EXPERTISE AT YOUR SERVICE
                 </h1>
                 <p className="text-light p-3 text-center lh-base  mb-5">

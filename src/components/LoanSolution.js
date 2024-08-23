@@ -15,7 +15,7 @@ function LoanSolution() {
       </div>
       <div className="col-12 col-md-7 d-flex align-items-center">
         <div className="row g-3 p-3">
-          <div className="col-6">
+          <div className="  col-md-6 col-12">
 
           <div className="card loan-card">
             <i className="bi bi-person-fill-check icon"></i>
@@ -28,7 +28,7 @@ function LoanSolution() {
               <p>Enjoy financial flexibility and rewards with our range of credit card options.</p>
             </div> */}
           </div>
-          <div className="col-6">
+          <div className="col-md-6 col-12 ">
 
           <div className="card loan-card">
             <i className="bi bi-house-check-fill icon"></i>
@@ -41,7 +41,7 @@ function LoanSolution() {
               <p>Secure your family's future with our comprehensive term life insurance plans.</p>
             </div> */}
           </div>
-          <div className="col-6">
+          <div className="col-md-6 col-12">
 
           <div className="card loan-card">
             <i className="bi bi-briefcase-fill icon"></i>
@@ -54,7 +54,7 @@ function LoanSolution() {
               <p>Access hassle-free business loan services to fuel your entrepreneurial ventures.</p>
             </div> */}
           </div>
-          <div className="col-6">
+          <div className="col-md-6 col-12">
 
           <div className="card loan-card">
             <i className="bi bi-bar-chart-fill icon"></i>
@@ -85,29 +85,29 @@ function LoanSolution() {
         </div>
       </div> */}
 
-      <div className="row g-3 p-3">
-        <div className="col-6">
+      <div className="row g-3 p-4">
+        <div className="col-md-6 col-12">
           <div className="card loan-card">
             <i className="bi bi-shield-check icon"></i>
             <p className="h5 my-2">LOAN AGAINST SECURITIES</p>
             <p>Leverage your investments to secure a loan without liquidating your assets.</p>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-md-6 col-12">
           <div className="card loan-card">
             <i className="bi bi-car-front icon"></i>
             <p className="h5 my-2">AUTO LOAN</p>
             <p>Drive your dream car with our competitive auto loan options.</p>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-md-6 col-12">
           <div className="card loan-card">
             <i className="bi bi-book-fill icon"></i>
             <p className="h5 my-2">EDUCATION LOAN</p>
             <p>Invest in your future with our education loans designed to cover tuition and other educational expenses.</p>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-md-6 col-12">
           <div className="card loan-card">
             <i className="bi bi-sliders icon"></i>
             <p className="h5 my-2">EQUIPMENT LOAN</p>
