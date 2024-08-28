@@ -17,7 +17,7 @@ function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const mailtoLink = `mailto:${encodeURIComponent("shubashunmugam@gmail.com")}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:${encodeURIComponent("solomon@bsecurefin.in")}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
     )}`;
 
