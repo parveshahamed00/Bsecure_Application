@@ -280,6 +280,11 @@ nav .links:hover {
   color: #333;
   font-weight: bold;
 }
+
+#loan-soln .bottom-div{
+  margin: 0;
+  padding: 0;
+}
 /* why we  */
 #why-we {
   background: linear-gradient(135deg, #0055aa, #00aaff);
@@ -827,7 +832,13 @@ nav .links:hover {
     width: calc(33.33% - 20px); /* 3 columns layout on larger screens */
   }
 }
-
+/* Application-form */
+ .applicationForm{
+  background-color:whitesmoke;
+  border: .5px solid red;
+  padding: 25px;
+  border-radius: 10px;
+}
 
 
 

@@ -2,9 +2,9 @@ import React from "react";
 
 function LoanSolution() {
   return (
-    <section id="loan-soln" className="py-5">
-  <div className="container py-5">
-    <div className="row gy-4 border border-danger border-4 rounded">
+    <section id="loan-soln" className="">
+  <div className="container mt-5 p-4">
+    <div className="row  border border-danger border-4 rounded p-5">
       <div className="col-12 col-md-5 text-center">
         <h1 className="display-2">Loan Solutions</h1>
         <img
@@ -14,7 +14,7 @@ function LoanSolution() {
         />
       </div>
       <div className="col-12 col-md-7 d-flex align-items-center">
-        <div className="row g-3 p-3">
+        <div className="row top-div g-3">
           <div className="  col-md-6 col-12">
 
           <div className="card loan-card">
@@ -70,22 +70,8 @@ function LoanSolution() {
         </div>
       </div>
 
-      {/* <div className="row g-3 p-3">
-        <div className="col-6">
-        
-        </div>
-        <div className="col-6">
-         
-        </div>
-        <div className="col-6">
-        
-        </div>
-        <div className="col-6">
-        
-        </div>
-      </div> */}
-
-      <div className="row g-3 p-4">
+   
+      <div className="row  bottom-div g-3">
         <div className="col-md-6 col-12">
           <div className="card loan-card">
             <i className="bi bi-shield-check icon"></i>

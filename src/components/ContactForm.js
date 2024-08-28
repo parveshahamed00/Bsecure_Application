@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const mailtoLink = `mailto:${encodeURIComponent("shubashunmugam@gmail.com")}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
+    )}`;
+
+    window.location.href = mailtoLink;
+    console.log(formData);
+    
+  };
   return (
     <section id="contact">
       <>
@@ -22,7 +46,7 @@ function ContactForm() {
             <div className="row gy-4 gy-md-5 gy-lg-0 align-items-md-center">
               <div className="col-12 col-lg-6">
                 <div className="border overflow-hidden">
-                  <form action="#!">
+                  <form onSubmit={handleSubmit}>
                     <div className="row gy-4 gy-xl-5 p-4 p-xl-5">
                       <div className="col-12">
                         <label htmlFor="fullname" className="form-label">
@@ -32,9 +56,10 @@ function ContactForm() {
                           type="text"
                           className="form-control"
                           id="fullname"
-                          name="fullname"
-                          defaultValue=""
-                          required=""
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                       <div className="col-12 col-md-6">
@@ -59,8 +84,9 @@ function ContactForm() {
                             className="form-control"
                             id="email"
                             name="email"
-                            defaultValue=""
-                            required=""
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
                           />
                         </div>
                       </div>
@@ -86,7 +112,11 @@ function ContactForm() {
                             className="form-control"
                             id="phone"
                             name="phone"
-                            defaultValue=""
+                            pattern="^[0-9]{10}$"
+                            placeholder="10 digit Number"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
                           />
                         </div>
                       </div>
@@ -99,8 +129,9 @@ function ContactForm() {
                           className="form-control"
                           id="subject"
                           name="subject"
-                          defaultValue=""
-                          required=""
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                       <div className="col-12">
@@ -111,9 +142,10 @@ function ContactForm() {
                           className="form-control"
                           id="message"
                           name="message"
+                          value={formData.message}
+                          onChange={handleChange}
                           rows={3}
-                          required=""
-                          defaultValue={""}
+                          required
                         />
                       </div>
                       <div className="col-12">
@@ -156,7 +188,7 @@ function ContactForm() {
                         </p>
                         <hr className="w-50 mb-3 border-dark-subtle" />
                         <address className="m-0 text-secondary">
-                         {/* xyz, Tamil Nadu */}
+                          {/* xyz, Tamil Nadu */}
                         </address>
                       </div>
                     </div>
@@ -244,9 +276,7 @@ function ContactForm() {
                         </p>
                         <hr className="w-50 mb-3 border-dark-subtle" />
                         <div className="d-flex mb-1">
-                          <p className="text-secondary fw-bold mb-0 me-5">
-                          
-                          </p>
+                          <p className="text-secondary fw-bold mb-0 me-5"></p>
                           <p className="text-secondary mb-0"></p>
                         </div>
                         <div className="d-flex">

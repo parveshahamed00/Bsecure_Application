@@ -208,7 +208,7 @@ const handleFormSubmission = async () => {
   }, [isOTPVerificationVisible, isAuthenticated]);
   return (
     <>
-      <section>
+      <section id="Application-form">
         <a onClick={() => handleShow()}>Application</a>
 
         <Modal show={show} onHide={() => setShow(false)} fullscreen>
@@ -237,7 +237,7 @@ const handleFormSubmission = async () => {
                 {next === "" && (
                   <div>
                     <Form
-                      className="applicationForm pt-3"
+                      className="applicationForm pt-3  mx-auto"
                       name="form1"
                       onSubmit={(e) => formSubmit(e)}
                     >
@@ -579,7 +579,7 @@ const handleFormSubmission = async () => {
                 {next === "next" && (
                   <div>
                     <Form
-                      className="applicationForm pt-3"
+                      className="applicationForm pt-3 mx-auto"
                       name="form2"
                       onSubmit={(e) => formSubmit(e)}
                     >
@@ -807,7 +807,7 @@ const handleFormSubmission = async () => {
                 {next === "next2" && (
                   <div>
                     <Form
-                      className="applicationForm pt-3"
+                      className="applicationForm pt-3 mx-auto"
                       name="form3"
                       onSubmit={(e) => formSubmit(e)}
                     >
@@ -1040,7 +1040,7 @@ const handleFormSubmission = async () => {
                 {next === "next3" && (
                   <div>
                     <Form
-                      className="applicationForm pt-3"
+                      className="applicationForm pt-3 mx-auto"
                       name="form4"
                       onSubmit={(e) => formSubmit(e)}
                     >

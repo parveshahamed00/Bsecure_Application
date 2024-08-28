@@ -16,7 +16,11 @@ import { toast } from "react-toastify";
 function Hero() {
   const today = new Date();
 
-  const shortDate = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  const shortDate = today.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -70,33 +74,29 @@ function Hero() {
       console.log(key + ": " + value);
     });
     try {
-      
-      const response= await fetch(
+      const response = await fetch(
         "https://script.google.com/macros/s/AKfycbzh_9-DPtdKxSGxXoK3w03-JZMndPj5XoZojeL5mXO7FZG2y-YT1Y7GvNgW-rZH59QtKw/exec",
         {
           mode: "no-cors",
           method: "POST",
           body: formdata,
         }
-      ).then((response) => {
-        console.log("form Stored to sheet");
-        toast.success("Form Submitted Successfuly !");
-        handleClose();
-      }).catch((error) => {
-        console.error("Error:", error);
-        toast.error("Form submission failed! Please try again.");
-
-      });
+      )
+        .then((response) => {
+          console.log("form Stored to sheet");
+          toast.success("Form Submitted Successfuly !");
+          handleClose();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          toast.error("Form submission failed! Please try again.");
+        });
     } catch (error) {
       toast.error("Form submission failed! Please try again.");
-
     }
     //  code to store form data from FORM to SHEET
-    
-  
-    
+
     // console.log("clicked")
-   
   }
 
   return (
@@ -216,12 +216,7 @@ function Hero() {
 
           <Form className="applicationForm pt-3" onSubmit={formSubmit}>
             <Modal.Body>
-            <Form.Control
-                          type="hidden"
-                          name="Date"
-                          value={shortDate}
-                        
-                        />
+              <Form.Control type="hidden" name="Date" value={shortDate} />
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
