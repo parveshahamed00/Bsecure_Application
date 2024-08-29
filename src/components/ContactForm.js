@@ -17,13 +17,16 @@ function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const mailtoLink = `mailto:${encodeURIComponent("solomon@bsecurefin.in")}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:${encodeURIComponent(
+      "solomon@bsecurefin.in"
+    )}?subject=${encodeURIComponent(
+      formData.subject
+    )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
     )}`;
 
     window.location.href = mailtoLink;
     console.log(formData);
-    
   };
   return (
     <section id="contact">
@@ -184,7 +187,9 @@ function ContactForm() {
                       <div>
                         <h4 className="mb-2">Office</h4>
                         <p className="mb-2">
-                          Please visit us to have a discussion.
+                          525, First floor, Annai Complex, Opp to Indian
+                          overseas Bank Udangudi road,Thisayanvilai Tirunelveli,
+                          TN 627657
                         </p>
                         <hr className="w-50 mb-3 border-dark-subtle" />
                         <address className="m-0 text-secondary">
@@ -209,9 +214,12 @@ function ContactForm() {
                           </div>
                           <div>
                             <h4 className="mb-2">Phone</h4>
-                            <p className="mb-2">
-                              Please speak with us directly.
-                            </p>
+                            <p className="mb-2">04637 213799</p>
+                            <p className="mb-2">8525 007 005</p>
+                            <p className="mb-2"> 8525 007 006</p>
+                            <p className="mb-2"> 9487 992 899</p>
+
+                           
                             <hr className="w-75 mb-3 border-dark-subtle" />
                             <p className="mb-0">
                               <a
@@ -241,7 +249,7 @@ function ContactForm() {
                           </div>
                           <div>
                             <h4 className="mb-2">Email</h4>
-                            <p className="mb-2">Please write to us directly.</p>
+                            <p className="mb-2">customercare@bsecurefin.in</p>
                             <hr className="w-75 mb-3 border-dark-subtle" />
                             <p className="mb-0">
                               <a
