@@ -252,38 +252,41 @@ nav .links:hover {
 }
 
 /* loan */
-.loan-card {
-  background-color: #ffaeb5;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.loan-card:hover {
-  transform: translateY(-10px);
-}
-
-.loan-card .icon {
-  font-size: 2rem;
-  color: #ff1500;
-  margin-bottom: 15px;
-}
-
-.loan-card p {
-  margin-bottom: 0;
-  color: #555;
-}
-
-.loan-card p.h5 {
-  color: #333;
-  font-weight: bold;
-}
-
-#loan-soln .bottom-div{
-  margin: 0;
-  padding: 0;
+.loan-card { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  align-items: center; 
+  text-align: center; 
+  padding: 20px; 
+  border: 1px solid #ddd; 
+  border-radius: 10px; 
+  height: 100%; /* Ensure all cards are the same height */ 
+  background-color: #ffaeb5; 
+  transition: transform 0.2s ease-in-out; 
+} 
+ 
+.loan-card:hover { 
+  transform: translateY(-5px); /* Optional: Add hover effect */ 
+} 
+ 
+.icon { 
+  font-size: 2rem; 
+  color: #ff1500; 
+  margin-bottom: 10px; 
+} 
+ 
+h5 { 
+  font-size: 1.25rem; 
+  font-weight: bold; 
+} 
+ 
+p { 
+  font-size: 0.875rem; 
+} 
+#loan-soln .bottom-div{ 
+  margin: 0; 
+  padding: 0; 
 }
 /* why we  */
 #why-we {
