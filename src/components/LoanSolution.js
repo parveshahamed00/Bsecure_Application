@@ -15,7 +15,7 @@ function LoanSolution() {
           </div>
           <div className="col-12 col-md-7 d-flex align-items-center">
             <div className="row g-3">
-              <div className="col-6">
+              <div className="col-md-6 col-12">
                 <div className="card loan-card">
                   <i className="bi bi-person-fill-check icon"></i>
                   <p className="h5 my-2">PERSONAL LOAN</p>
@@ -25,7 +25,7 @@ function LoanSolution() {
                   </p>
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-12">
                 <div className="card loan-card">
                   <i className="bi bi-house-check-fill icon"></i>
                   <p className="h5 my-2">HOUSING LOAN</p>
@@ -35,7 +35,7 @@ function LoanSolution() {
                   </p>
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-12">
                 <div className="card loan-card">
                   <i className="bi bi-briefcase-fill icon"></i>
                   <p className="h5 my-2">BUSINESS LOAN</p>
@@ -45,7 +45,7 @@ function LoanSolution() {
                   </p>
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-md-6 col-12">
                 <div className="card loan-card">
                   <i className="bi bi-bar-chart-fill icon"></i>
                   <p className="h5 my-2">LOAN AGAINST PROPERTY</p>
@@ -58,7 +58,7 @@ function LoanSolution() {
             </div>
           </div>
           <div className="row g-3 py-3 bottom-div">
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <div className="card loan-card">
                 <i className="bi bi-shield-check icon"></i>
                 <p className="h5 my-2">LOAN AGAINST SECURITIES</p>
@@ -68,7 +68,7 @@ function LoanSolution() {
                 </p>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <div className="card loan-card">
                 <i className="bi bi-car-front icon"></i>
                 <p className="h5 my-2">AUTO LOAN</p>
@@ -77,7 +77,7 @@ function LoanSolution() {
                 </p>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <div className="card loan-card">
                 <i className="bi bi-book-fill icon"></i>
                 <p className="h5 my-2">EDUCATION LOAN</p>
@@ -87,7 +87,7 @@ function LoanSolution() {
                 </p>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-md-6 col-12">
               <div className="card loan-card">
                 <i className="bi bi-sliders icon"></i>
                 <p className="h5 my-2">EQUIPMENT LOAN</p>

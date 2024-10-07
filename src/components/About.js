@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function About() {
   return (
-    <section id="about" className="pb-5">
-      <div className="container">
+    <section id="about" className="pb-5 ">
+      <div className="container ">
         <h1 className="text-center display-4 py-5">About Us</h1>
         <div className="row">
           <div className="col col-md-12 order-md-2 order-1">
@@ -14,34 +15,36 @@ function About() {
                 advisory?
               </h2>
               <div className=" row">
-                <div className="col-md-8"> 
-                <p>
-                Our journey in financial advisory began with a mission to
-                empower individuals and businesses across all income levels and
-                credit profiles. At Bsecure Advisory Services Private Limited,
-                founded by Solomon Arputha Kumar, we excel in delivering bespoke
-                financial solutions tailored to your unique needs. With our
-                extensive network of over 100 banks and NBFCs, we provide
-                unparalleled expertise in crafting financial products and
-                services that align with your core objectives.
-                <br />
-                <br/>
-                We pride ourselves on our transparent, no-fee consultation
-                process, ensuring you receive honest advice and continuous
-                support. Our commitment to trust and excellence helps you
-                achieve your financial goals with confidence.
-                </p>
-                <button type="button" className="btn btn btn-light btn-lg mt-4">
-       Know More
-      </button>
+                <div className="col-md-8">
+                  <p>
+                    Our journey in financial advisory began with a mission to
+                    empower individuals and businesses across all income levels
+                    and credit profiles. At Bsecure Advisory Services Private
+                    Limited, founded by Solomon Arputha Kumar, we excel in
+                    delivering bespoke financial solutions tailored to your
+                    unique needs. With our extensive network of over 100 banks
+                    and NBFCs, we provide unparalleled expertise in crafting
+                    financial products and services that align with your core
+                    objectives.
+                    <br />
+                    <br />
+                  </p>
+                  <Link to="/about">
+                    <button
+                      type="button"
+                      className="btn btn btn-light btn-lg mt-4"
+                    >
+                      Know More
+                    </button>
+                  </Link>
                 </div>
-               <div className="col-md-4 p-5">
-               <img
-              src={`${process.env.PUBLIC_URL}/images/about.png`}
-              className="img-fluid"
-              alt="img"
-            />
-               </div>
+                <div className="col-md-4 p-5">
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/about.png`}
+                    className="img-fluid"
+                    alt="img"
+                  />
+                </div>
               </div>
             </div>
           </div>

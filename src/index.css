@@ -262,13 +262,20 @@ nav .links:hover {
   border: 1px solid #ddd; 
   border-radius: 10px; 
   height: 100%; /* Ensure all cards are the same height */ 
-  background-color: #ffaeb5; 
-  transition: transform 0.2s ease-in-out; 
+  background-color: #ff8690; 
+  transition:  0.5s ease-in-out 0.1s background-color ; 
 } 
  
 .loan-card:hover { 
-  transform: translateY(-5px); /* Optional: Add hover effect */ 
+  background-color: #0055aa;
+  color: white;
+ /* Optional: Add hover effect */ 
+  /* transition-delay:1s; */
+
 } 
+.loan-card:hover .icon{
+  color: white;
+}
  
 .icon { 
   font-size: 2rem; 

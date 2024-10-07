@@ -2,16 +2,36 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { toast } from "react-toastify";
+import { FormGroup } from "react-bootstrap";
 const Application = () => {
   const today = new Date();
 
-  const shortDate = today.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+  const shortDate = today.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
   const [maritalStatus, setMaritalStatus] = useState("");
+  const [coApplicant, setCoApplicant] = useState("");
+
   const [spouseName, setSpouseName] = useState("");
   const [spouseDob, setSpouseDob] = useState("");
+  const handleSpouseDob = (e) => {
+    setSpouseDob(e.target.value);
+  };
+  const [coDob, setCoDob] = useState("");
+
+  const handleCoDob = (e) => {
+    setCoDob(e.target.value);
+  };
+  // Permanent Address
+  const [isPermanentAddress, setIsPermanentAddress] = useState("");
+  const handlePermanentAddress = (event) => {
+    setIsPermanentAddress(event.target.value);
+  };
   const [selectedDate, setSelectedDate] = useState("");
 
   const handleDateChange = (e) => {
@@ -68,6 +88,9 @@ const Application = () => {
   const handleMaritalStatusChange = (event) => {
     setMaritalStatus(event.target.value);
   };
+  const handleCoApplicant = (event) => {
+    setCoApplicant(event.target.value);
+  };
   const handleResidentChange = (event) => {
     setResident(event.target.value);
   };
@@ -104,80 +127,53 @@ const Application = () => {
     }
   }
 
-  // const handleFormSubmission = () => {
-  //   const params = new URLSearchParams();
-  //   for (let key in formData) {
-  //     params.append(key, formData[key]);
-  //   }
-  //   console.log(formData);
-  //   // Submit form data to server or Google Sheets
-  //   fetch(
-  //     "https://script.google.com/macros/s/AKfycbzNHiIyKb0k11Id3791cGrDymlsGmMR5TbK2rtIbx9y1SzK9bhRVxHxagJI-KUn5Wo68w/exec",
-  //     {
-  //       mode: "no-cors",
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/x-www-form-urlencoded",
-  //       },
-  //       body: params.toString(),
-  //     }
-  //   )
-  //     .then((response) => {
-  //       console.log("Form Stored to sheet");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  //   toast.success("form submited");
-  //   setShow(false);
-  // };
   // -----
 
-const handleFormSubmission = async () => {
-  const params = new URLSearchParams();
-  for (let key in formData) {
-    params.append(key, formData[key]);
-  }
-
-  try {
-    console.log(formData);
-
-    // Make the async fetch request
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbzNHiIyKb0k11Id3791cGrDymlsGmMR5TbK2rtIbx9y1SzK9bhRVxHxagJI-KUn5Wo68w/exec",
-      {
-        mode: "no-cors",  // limited access to response
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: params.toString(),
-      }
-    );
-
-    // Since no-cors doesn't give us access to detailed response information,
-    // we can't check response.ok or the status directly.
-
-    if (response.type === 'opaque') {  // In no-cors, the response type is opaque
-      console.log("Form Stored to sheet");
-      toast.success("Form submitted!");
-
-      // Hide form after submission
-      setShow(false);
-
-      // Reload site after 5 seconds
-      setTimeout(() => {
-        window.location.reload();
-      }, 5000);  // 5000 milliseconds = 5 seconds
-    } else {
-      throw new Error("Failed to submit form");
+  const handleFormSubmission = async () => {
+    const params = new URLSearchParams();
+    for (let key in formData) {
+      params.append(key, formData[key]);
     }
 
-  } catch (error) {
-    console.error("Error:", error);
-    toast.error("Form submission failed! Please try again.");
-  }
-};
+    try {
+      console.log(formData);
+
+      // Make the async fetch request
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbxgxRUoRXfLWeqMwCbC9PALTiqJQS1_sYwjJimwlXn-dCf-Rp6rNKRGviCR8uK-HCYEjQ/exec",
+        {
+          mode: "no-cors", // limited access to response
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params.toString(),
+        }
+      );
+
+      // Since no-cors doesn't give us access to detailed response information,
+      // we can't check response.ok or the status directly.
+
+      if (response.type === "opaque") {
+        // In no-cors, the response type is opaque
+        console.log("Form Stored to sheet");
+        toast.success("Form submitted!");
+
+        // Hide form after submission
+        setShow(false);
+
+        // Reload site after 5 seconds
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000); // 5000 milliseconds = 5 seconds
+      } else {
+        throw new Error("Failed to submit form");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Form submission failed! Please try again.");
+    }
+  };
 
   const SignInButton = () => {
     const script = document.createElement("script");
@@ -211,7 +207,13 @@ const handleFormSubmission = async () => {
       <section id="Application-form">
         <a onClick={() => handleShow()}>Application</a>
 
-        <Modal show={show} onHide={() => setShow(false)} fullscreen>
+        <Modal
+          size="lg"
+          show={show}
+          onHide={() => setShow(false)}
+          backdrop="static"
+          keyboard={false}
+        >
           <div className="text-center  application-bg">
             <img
               src={`${process.env.PUBLIC_URL}/images/logo.png`}
@@ -227,11 +229,15 @@ const handleFormSubmission = async () => {
           >
             <marquee direction="left" scrollamount="10">
               <Modal.Title className="mx-5">
-                <h3 className="fs-2">Application Form 💥</h3>
+                <h3 className="fs-2">
+                  Note! Please ensure both your current residential and office
+                  addresses are accurate. This will help avoid any delays or
+                  issues in communication.
+                </h3>
               </Modal.Title>
             </marquee>
           </Modal.Header>
-          <Modal.Body className="mx-3">
+          <Modal.Body>
             {!isOTPVerificationVisible ? (
               <div>
                 {next === "" && (
@@ -242,11 +248,10 @@ const handleFormSubmission = async () => {
                       onSubmit={(e) => formSubmit(e)}
                     >
                       <Form.Control
-                          type="hidden"
-                          name="Date"
-                          value={shortDate}
-                        
-                        />
+                        type="hidden"
+                        name="Date"
+                        value={shortDate}
+                      />
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlInput1"
@@ -279,6 +284,7 @@ const handleFormSubmission = async () => {
                           placeholder="Name"
                           name="Name"
                           className="w-75"
+                          required
                         />
                       </Form.Group>
                       <Form.Group
@@ -336,6 +342,21 @@ const handleFormSubmission = async () => {
                           </div>
                         </div>
                       </Form.Group>
+                      <FormGroup>
+                        <Form.Label className="mt-3 lable-color">
+                          Date Of Birth ⭐
+                        </Form.Label>
+                        <div>
+                          <input
+                            type="date"
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            name="Date_of_Birth"
+                            required
+                          />
+                        </div>
+                        <p>Selected Date: {selectedDate}</p>
+                      </FormGroup>
                       <Form.Group controlId="formPhoneNumber" className="mb-3">
                         <Form.Label className="mt-3 lable-color">
                           Phone Number ⭐
@@ -348,6 +369,7 @@ const handleFormSubmission = async () => {
                           onChange={handlePhoneNumberChange}
                           pattern="^[0-9]{10}$"
                           className="w-75"
+                          required
                         />
                         {error && (
                           <Form.Text className="text-danger">{error}</Form.Text>
@@ -364,8 +386,8 @@ const handleFormSubmission = async () => {
                           value={alphoneNumber}
                           onChange={alhandlePhoneNumberChange}
                           pattern="^[0-9]{10}$"
-                          required
                           className="w-75"
+                          required
                         />
                         {alerror && (
                           <Form.Text className="text-danger">
@@ -378,6 +400,7 @@ const handleFormSubmission = async () => {
                           LOAN TYPE ⭐
                         </Form.Label>
                         <select
+                          required
                           class="form-select w-75"
                           name="LoanType"
                           aria-label="Default select example"
@@ -406,6 +429,7 @@ const handleFormSubmission = async () => {
                           qualification ⭐
                         </Form.Label>
                         <select
+                          required
                           class="form-select w-75"
                           name="Qualification"
                           aria-label="Default select example"
@@ -432,6 +456,7 @@ const handleFormSubmission = async () => {
                           LOAN AMOUNT NEEDED ⭐
                         </Form.Label>
                         <Form.Control
+                          required
                           type="number"
                           name="Loan_Amount_Needed"
                           placeholder="eg. 100000"
@@ -447,6 +472,7 @@ const handleFormSubmission = async () => {
                           MOTHER NAME ⭐
                         </Form.Label>
                         <Form.Control
+                          required
                           type="text"
                           placeholder="name"
                           name="Mother_Name"
@@ -458,6 +484,7 @@ const handleFormSubmission = async () => {
                           MARITAL STATUS ⭐
                         </Form.Label>
                         <select
+                          required
                           className="form-select w-75"
                           aria-label="Default select example"
                           onChange={handleMaritalStatusChange}
@@ -479,11 +506,11 @@ const handleFormSubmission = async () => {
                               SPOUSE NAME (Husband or Wife) ⭐
                             </Form.Label>
                             <Form.Control
+                              required
                               type="text"
                               placeholder="Spouse Name"
                               name="Spouse_Name"
                               className="mb-3 w-75"
-                              required
                             />
                           </Form.Group>
 
@@ -492,15 +519,15 @@ const handleFormSubmission = async () => {
                               SPOUSE DOB (Husband or Wife) ⭐
                             </Form.Label>
                             <Form.Control
-                            required
-                            name="Spouse_DOB"
+                              required
+                              name="Spouse_DOB"
                               type="date"
-                              value={selectedDate}
-                              onChange={handleDateChange}
+                              value={spouseDob}
+                              onChange={handleSpouseDob}
                               className="w-75"
                             />
 
-                            <p>Selected Date: {selectedDate}</p>
+                            <p>Selected Date: {spouseDob}</p>
                           </Form.Group>
                         </>
                       )}
@@ -509,6 +536,7 @@ const handleFormSubmission = async () => {
                           NUMBER OF DEPANDANTS ⭐
                         </Form.Label>
                         <Form.Control
+                          required
                           type="number"
                           placeholder="eg. 4"
                           name="Number_of_Depandants"
@@ -523,6 +551,7 @@ const handleFormSubmission = async () => {
                           RELIGION ⭐
                         </Form.Label>
                         <select
+                          required
                           id="religion"
                           class="form-select w-75"
                           name="Religion"
@@ -545,9 +574,9 @@ const handleFormSubmission = async () => {
                           CATEGORY ⭐
                         </Form.Label>
                         <Form.Select
+                          required
                           name="Category"
                           aria-label="Select Category"
-                          required
                           className="w-75"
                         >
                           <option value="" disabled selected>
@@ -562,9 +591,9 @@ const handleFormSubmission = async () => {
                       </Form.Group>
                       <Form.Group>
                         <Form.Check
+                          required
                           type="checkbox"
                           label="I agree that the data provided cannot be edited after submission."
-                          required
                           id="agreeCheckbox"
                         />
                       </Form.Group>
@@ -596,9 +625,9 @@ const handleFormSubmission = async () => {
                           COMPANY NAME ⭐
                         </Form.Label>
                         <Form.Control
+                          required
                           type="text"
                           name="Company_Name"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -610,9 +639,9 @@ const handleFormSubmission = async () => {
                           DESIGNATION ⭐
                         </Form.Label>
                         <Form.Control
+                          required
                           type="text"
                           name="Designation"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -624,14 +653,16 @@ const handleFormSubmission = async () => {
                           PURPOSE OF LOAN ⭐
                         </Form.Label>
                         <select
+                          required
                           name="Purpose_of_Loan"
                           className="form-select w-75"
                           aria-label="Default select example"
-                          required
                         >
                           <option selected>select Purpose</option>
                           <option value="Personal Use">Personal Use</option>
-                          <option value="Medical Emergency">Medical Emergency</option>
+                          <option value="Medical Emergency">
+                            Medical Emergency
+                          </option>
                           <option value="Marriage">Marriage</option>
                           <option value="Other">Other</option>
                         </select>
@@ -644,9 +675,9 @@ const handleFormSubmission = async () => {
                           EXPERINCE IN CURRENT JOB ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="number"
                           name="Experince_in_Current_Job"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -658,9 +689,9 @@ const handleFormSubmission = async () => {
                           TOTAL JOB EXPERIENCE ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="number"
                           name="Total_Job_Experince"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -672,10 +703,10 @@ const handleFormSubmission = async () => {
                           OFFICE ADDRESS ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           as="textarea"
                           rows={2}
                           name="Office_Address"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -687,8 +718,8 @@ const handleFormSubmission = async () => {
                           OFFICE LANDMARK ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
-                          required
                           name="Office_Landmark"
                           className="w-75"
                         />
@@ -701,12 +732,11 @@ const handleFormSubmission = async () => {
                           OFFICE PINCODE ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
                           placeholder="6 digit pincode"
                           pattern="^[0-9]{6}$"
-
                           name="Office_Pincode"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -719,10 +749,10 @@ const handleFormSubmission = async () => {
                           Verification) ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="email"
                           placeholder="name@companyname.com"
                           name="Office_Mail_Id"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -734,56 +764,318 @@ const handleFormSubmission = async () => {
                           Office / collegue contact number ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="tel"
                           name="Office_Collegue_Contact_Number"
-                          required
                           className="w-75"
+                          pattern="^[0-9]{10}$"
                           placeholder="10 digit mobile number"
                         />
                       </Form.Group>
                       <Form.Group className="mb-3">
                         <Form.Label className="mt-3 lable-color">
-                          is there a co-application needed ⭐
+                          is there a co-applicant needed ⭐
                         </Form.Label>
-                        <div class="input-group mb-3">
-                          <div class="form-check form-check-inline">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Co_application"
-                              id="inlineRadioyes"
-                              value="Yes"
-                              required
-                            />
-                            <label
-                              className="form-check-label"
-                              for="inlineRadioyes"
-                            >
-                              Yes
-                            </label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="Co_application"
-                              id="inlineRadiono"
-                              value="No"
-                            />
-                            <label
-                              className="form-check-label"
-                              for="inlineRadiono"
-                            >
-                              No
-                            </label>
-                          </div>
-                        </div>
+                        <select
+                        required
+                          className="form-select w-75"
+                          aria-label="Default select example"
+                          onChange={handleCoApplicant}
+                          name="Co_applicant"
+                        >
+                          <option value="" disabled>
+                            select status
+                          </option>
+                          <option value="No">No</option>
+                          <option value="Yes">Yes</option>
+                        </select>
                       </Form.Group>
+                      {coApplicant === "Yes" && (
+                        <div>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's Full Name(as in Aadhar) ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="Name"
+                              name="CA_Name"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <FormGroup>
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's Date Of Birth ⭐
+                            </Form.Label>
+                            <div>
+                              <input
+                              required
+                                type="date"
+                                value={coDob}
+                                onChange={handleCoDob}
+                                name="CA_Date_of_Birth"
+                              />
+                            </div>
+                            <p>Selected Date: {coDob}</p>
+                          </FormGroup>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's \GENDER ⭐
+                            </Form.Label>
+                            <div class="input-group mb-3">
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="CA_Gender"
+                                  id="inlineRadio1"
+                                  value="Female"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  for="inlineRadio1"
+                                >
+                                  Female
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="CA_Gender"
+                                  id="inlineRadio2"
+                                  value="Male"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  for="inlineRadio2"
+                                >
+                                  Male
+                                </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="CA_Gender"
+                                  id="inlineRadio2"
+                                  value="Others"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  for="inlineRadio2"
+                                >
+                                  Others
+                                </label>
+                              </div>
+                            </div>
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's Office / collegue contact number ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="tel"
+                              name="CA_Office_Collegue_Contact_Number"
+                              className="w-75"
+                              pattern="^[0-9]{10}$"
+                              placeholder="10 digit mobile number"
+                            />
+                          </Form.Group>
+                          <Form.Group className="mt-3">
+                            <Form.Label className="lable-color">
+                              qualification ⭐
+                            </Form.Label>
+                            <select
+                            required
+                              class="form-select w-75"
+                              name="CA_Qualification"
+                              aria-label="Default select example"
+                            >
+                              <option value="" disabled>
+                                select Qualification
+                              </option>
+                              <option value="Post Graduated">
+                                Post Graduated
+                              </option>
+                              <option value="Graduated">Graduated</option>
+                              <option value="Under Graduated">
+                                Under Graduated
+                              </option>
+                              <option value="Diplamo">Diplamo</option>
+                              <option value="High School">High School</option>
+                              <option value="School">School</option>
+                            </select>
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's Mother Name ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="Name"
+                              name="CA_Mother_Name"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's Relationship ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="Relationship with Applicant"
+                              name="CA_Relationship"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's COMPANY NAME ( IF SALARY IS TAKEN
+                              INTO ACCOUNT ) ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="Company Name"
+                              name="CA_Company_Name"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's Designation ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="Co-Applicant's Designation"
+                              name="CA_Designation"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's EXPERINCE IN CURRENT JOB ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="number"
+                              name="CA_Experince_in_Current_Job"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className=" lable-color">
+                              Co-Applicant's TOTAL JOB EXPERIENCE ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="number"
+                              name="CA_Total_Job_Experince"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <Form.Label className=" lable-color">
+                              Co-Applicant's OFFICE ADDRESS ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              as="textarea"
+                              rows={2}
+                              name="CA_Office_Address"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Co-Applicant's OFFICE LANDMARK ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              name="CA_Office_Landmark"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className=" lable-color">
+                              Co-Applicant's OFFICE PINCODE ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="6 digit pincode"
+                              pattern="^[0-9]{6}$"
+                              name="CA_Office_Pincode"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className=" mt-3 lable-color">
+                              Co-Applicant's Email address (For Quick and
+                              hassle-free employment Verification))⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="email"
+                              placeholder="name@example.com"
+                              name="CA_Email"
+                              className="mb-3 w-75"
+                            />
+                          </Form.Group>
+                        </div>
+                      )}
+
                       <Form.Group>
                         <Form.Check
+                        required
                           type="checkbox"
                           label="I agree that the data provided cannot be edited after submission."
-                          required
                           id="agreeCheckbox"
                         />
                       </Form.Group>
@@ -824,11 +1116,11 @@ const handleFormSubmission = async () => {
                           CURRENT RESIDENCE ⭐
                         </Form.Label>
                         <select
+                        required
                           className="form-select w-75"
                           aria-label="Default select example"
                           onChange={handleResidentChange}
                           name="Current_Resident"
-                          required
                         >
                           <option value="" disabled>
                             select current resident
@@ -836,7 +1128,9 @@ const handleFormSubmission = async () => {
                           <option value="Owned by  parents / sibilings">
                             Owned by parents / sibilings
                           </option>
-                          <option value="Company Provided">Company Provided</option>
+                          <option value="Company Provided">
+                            Company Provided
+                          </option>
                           <option value="Rental">Rental</option>
                           <option value="Owned by Spouse">
                             Owned by Spouse (Husband or Wife)
@@ -854,11 +1148,9 @@ const handleFormSubmission = async () => {
                               monthly house rent ⭐
                             </Form.Label>
                             <Form.Control
+                            required
                               type="text"
-                            
-                              
                               name="Monthly_House_Rent"
-                              required
                               className="w-75"
                             />
                           </Form.Group>
@@ -876,7 +1168,6 @@ const handleFormSubmission = async () => {
                               name="Own_house"
                               id="inlineRadio1"
                               value="Yes"
-                              required
                             />
                             <label
                               className="form-check-label"
@@ -892,7 +1183,6 @@ const handleFormSubmission = async () => {
                               name="Own_house"
                               id="inlineRadio2"
                               value="No"
-                              
                             />
                             <label
                               className="form-check-label"
@@ -911,9 +1201,9 @@ const handleFormSubmission = async () => {
                           current residential address ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           as="textarea"
                           rows={2}
-                          required
                           name="Current_Residential_Address"
                           className="w-75"
                         />
@@ -925,7 +1215,12 @@ const handleFormSubmission = async () => {
                         <Form.Label className=" lable-color">
                           LANDMARK ⭐
                         </Form.Label>
-                        <Form.Control type="text" required name="Landmark" />
+                        <Form.Control
+                        required
+                          type="text"
+                          name="Landmark"
+                          className="w-75"
+                        />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -935,11 +1230,10 @@ const handleFormSubmission = async () => {
                           PINCODE ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
                           placeholder="6 digit pincode"
                           pattern="^[0-9]{6}$"
-
-                          required
                           name="Pincode"
                           className="w-75"
                         />
@@ -952,10 +1246,10 @@ const handleFormSubmission = async () => {
                           Total number of years staying in current address ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="number"
                           placeholder="eg: 5"
                           name="Total_number_of_years_staying_in_current_address"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -967,9 +1261,9 @@ const handleFormSubmission = async () => {
                           total number of years staying in the city ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="number"
                           placeholder="eg: 10"
-                          required
                           name="Total_number_of_years_staying_in_the_city"
                           className="w-75"
                         />
@@ -983,10 +1277,10 @@ const handleFormSubmission = async () => {
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="Current_address"
+                              name="Is_Permanent_address_same_as_Current_address"
                               id="inlineRadio1"
                               value="Yes"
-                              required
+                              onChange={handlePermanentAddress}
                             />
                             <label
                               className="form-check-label"
@@ -1000,9 +1294,9 @@ const handleFormSubmission = async () => {
                               class="form-check-input"
                               type="radio"
                               id="inlineRadio2"
-                              name="Current_address"
+                              name="Is_Permanent_address_same_as_Current_address"
                               value="No"
-                              required
+                              onChange={handlePermanentAddress}
                             />
                             <label
                               className="form-check-label"
@@ -1013,11 +1307,61 @@ const handleFormSubmission = async () => {
                           </div>
                         </div>
                       </Form.Group>
+                      {isPermanentAddress === "No" && (
+                        <div>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <Form.Label className="mt-3 lable-color">
+                              Permanent residential address ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              as="textarea"
+                              rows={2}
+                              name="Permanent_Residential_Address"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className="lable-color">
+                              Permanent Address Landmark⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder=""
+                              name="Permanent_address_Landmark"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label className=" lable-color">
+                              Permanent Address PINCODE ⭐
+                            </Form.Label>
+                            <Form.Control
+                            required
+                              type="text"
+                              placeholder="6 digit pincode"
+                              pattern="^[0-9]{6}$"
+                              name="Permanent_address_Pincode"
+                              className="w-75"
+                            />
+                          </Form.Group>
+                        </div>
+                      )}
                       <Form.Group>
                         <Form.Check
+                        required
                           type="checkbox"
                           label="I agree that the data provided cannot be edited after submission."
-                          required
                           id="agreeCheckbox"
                         />
                       </Form.Group>
@@ -1057,10 +1401,10 @@ const handleFormSubmission = async () => {
                           reference 1 name (can be a friend) ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
                           placeholder="name"
                           name="Reference1_name"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -1069,10 +1413,10 @@ const handleFormSubmission = async () => {
                           Reference 1 Phone Number ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="tel"
                           placeholder="Enter 10 digit phone number"
                           pattern="^[0-9]{10}$"
-                          required
                           name="Reference1_Phone_Number"
                           className="w-75"
                         />
@@ -1085,9 +1429,9 @@ const handleFormSubmission = async () => {
                           Reference 1 ADDRESS ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           as="textarea"
                           rows={2}
-                          required
                           name="Reference_1_Address"
                           className="w-75"
                         />
@@ -1100,11 +1444,10 @@ const handleFormSubmission = async () => {
                           Reference 1 PINCODE ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
                           placeholder="6 digit pincode"
                           pattern="^[0-9]{6}$"
-
-                          required
                           name="Reference1_Pincode"
                           className="w-75"
                         />
@@ -1117,10 +1460,10 @@ const handleFormSubmission = async () => {
                           reference 2 name (can be a Relative) ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
                           placeholder="name"
                           name="Reference2_name"
-                          required
                           className="w-75"
                         />
                       </Form.Group>
@@ -1129,10 +1472,10 @@ const handleFormSubmission = async () => {
                           Reference 2 Phone Number ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="tel"
                           placeholder="Enter 10 digit phone number"
                           pattern="^[0-9]{10}$"
-                          required
                           name="Reference_2_Phone_Number"
                           className="w-75"
                         />
@@ -1145,9 +1488,9 @@ const handleFormSubmission = async () => {
                           Reference 2 ADDRESS ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           as="textarea"
                           rows={2}
-                          required
                           name="Reference_2_Address"
                           className="w-75"
                         />
@@ -1160,13 +1503,12 @@ const handleFormSubmission = async () => {
                           Reference 2 PINCODE ⭐
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
-                          required
                           placeholder="6 digit pincode"
                           name="Reference2_Pincode"
                           className="w-75"
                           pattern="^[0-9]{6}$"
-
                         />
                       </Form.Group>
                       <Form.Group
@@ -1177,10 +1519,10 @@ const handleFormSubmission = async () => {
                           service branch ⭐
                         </Form.Label>
                         <select
+                        required
                           id="district"
                           className="form-select w-75"
                           name="Service_Branch"
-                          required
                         >
                           <option value="" disabled>
                             select Branch
@@ -1231,6 +1573,7 @@ const handleFormSubmission = async () => {
                           staff code (optional)
                         </Form.Label>
                         <Form.Control
+                        required
                           type="text"
                           name="Staff_Code"
                           className="w-75"
@@ -1244,6 +1587,7 @@ const handleFormSubmission = async () => {
                           staff / agent e-mail id (optional)
                         </Form.Label>
                         <Form.Control
+                        required
                           type="email"
                           placeholder="solomon@bsecurefin.in"
                           name="Staff_email"
