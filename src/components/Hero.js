@@ -11,6 +11,8 @@ import Process from "./Process";
 import Achievements from "./Achievements";
 import Partners from "./Partners";
 import ContactForm from "./ContactForm";
+import ClientReviews from "./ClientReviews";
+
 import { toast } from "react-toastify";
 
 function Hero() {
@@ -252,6 +254,7 @@ function Hero() {
                 </Form.Label>
                 <Form.Control
                   name="Phone"
+                  required
                   type="tel"
                   placeholder="Enter 10 digit phone number"
                   pattern="^[0-9]{10}$"
@@ -487,7 +490,7 @@ function Hero() {
                       required
                     />
                     <label
-                      className="form-check-label custom-label"
+                      className="form-check-label custom-label"custom
                       htmlFor="inlineRadio3"
                     >
                       11 am - 12 pm
@@ -562,6 +565,7 @@ function Hero() {
         <Services />
         <Process />
         <Achievements />
+        <ClientReviews></ClientReviews>
         <Partners />
         <ContactForm />
       </div>

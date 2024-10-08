@@ -13,7 +13,6 @@ function ClientReviews() {
                   We believe in client satisfaction. Here are some testimonials
                   by our worthy clients.
                 </p>
-                <button>Get a Free Consultation</button>
 
               </div>
               <div className="col-12 col-lg-8">

@@ -16,9 +16,7 @@ function Offers() {
               smooth and hassle-free. Trust us to help you achieve your
               financial goals with ease.
             </p>
-            <button type="button" className="btn btn-outline-primary">
-              Book Now
-            </button>
+           
           </div>
         </div>
         <div className=" col-12 col-md-4 p-5">
@@ -33,9 +31,7 @@ function Offers() {
               management with expertise and care, ensuring financial stability
               and peace of mind.
             </p>
-            <button type="button" className="btn btn-outline-primary">
-              Book Now
-            </button>
+           
           </div>
         </div>
         <div className=" col-12 col-md-4 p-5">
@@ -50,9 +46,7 @@ function Offers() {
               business insurance, we provide comprehensive coverage tailored to
               your requirements. Let us safeguard your future with confidence.
             </p>
-            <button type="button" className="btn btn-outline-primary">
-              Book Now
-            </button>
+           
           </div>
         </div>
       </div>

@@ -232,7 +232,7 @@ const Application = () => {
                 <h3 className="fs-2">
                   Note! Please ensure both your current residential and office
                   addresses are accurate. This will help avoid any delays or
-                  issues in communication.
+                  issues in communication | Office Address: 525, First Floor, Annai Complex, opposite Indian overseas Bank, Thisayanvilai, Tamil Nadu 627657 
                 </h3>
               </Modal.Title>
             </marquee>

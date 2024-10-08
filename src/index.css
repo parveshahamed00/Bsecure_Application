@@ -827,8 +827,9 @@ p {
 }
 
 .form-check-input:checked + .custom-label {
-  background-color: #cce7ff;
-  border-radius: 15px;
+ color: #ff1500;
+ font-weight: 900;
+ font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 @media (min-width: 768px) {
