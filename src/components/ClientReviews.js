@@ -25,14 +25,9 @@ function ClientReviews() {
                             <figure>
                               <figcaption>
                                 <blockquote className="bsb-blockquote-icon mb-4">
-                                  We were incredibly impressed with the work
-                                  Bsecure did for us. They took our vision and
-                                  turned it into reality, delivering everything
-                                  on time and within budget. We highly recommend
-                                  Bsecure to anyone looking for a reliable and
-                                  professional partner.
+                                "Bsecure Advisory Services truly understands the financial challenges faced by small businesses. Their tailored solutions and deep connections with various banks helped me secure the best loan for my business. They simplified the entire process, and I couldn’t be happier with their service."
                                 </blockquote>
-                                <h4 className="mb-2">Luna John</h4>
+                                <h4 className="mb-2">Durai Selvan</h4>
                                 <h5 className="fs-6 text-warning mb-0">
                                   <i class="bi bi-star-fill"></i>{" "}
                                   <i class="bi bi-star-fill"></i>{" "}
@@ -52,9 +47,9 @@ function ClientReviews() {
                               
                               <figcaption>
                                 <blockquote className="bsb-blockquote-icon mb-4">
-                                We were looking for a company to help us develop a new website that was both visually appealing and user-friendly. Bsecure exceeded our expectations with the results, and we highly recommend them to anyone looking for a new website.
+                                "I was struggling with my credit profile, and Bsecure Advisory Services turned things around for me. Their team crafted a financial strategy that not only improved my credit score but also helped me secure a loan with favorable terms. Highly recommend them!"
                                 </blockquote>
-                                <h4 className="mb-2">Mark Smith</h4>
+                                <h4 className="mb-2">Priya</h4>
                                 <h5 className="fs-6 text-warning mb-0">
                                   <i class="bi bi-star-fill"></i>{" "}
                                   <i class="bi bi-star-fill"></i>{" "}
@@ -73,9 +68,8 @@ function ClientReviews() {
                             <figure>
                               <figcaption>
                                 <blockquote className="bsb-blockquote-icon mb-4">
-                                We were struggling to manage our finances effectively and needed help developing a financial plan. Bsecure created a plan that worked for us and showed us how to track our spending more effectively. We are so grateful for their help.
-                                </blockquote>
-                                <h4 className="mb-2">Michael Wilson</h4>
+                                "Working with Bsecure Advisory has been a game-changer for our company. Their expertise in financial products is unmatched, and their connections with a wide range of banks allowed us to explore options we never thought possible. They’ve become a trusted financial partner for us."                                </blockquote>
+                                <h4 className="mb-2">Rajesh Mehra</h4>
                                 <h5 className="fs-6 text-warning mb-0">
                                   <i class="bi bi-star-fill"></i>{" "}
                                   <i class="bi bi-star-fill"></i>{" "}
@@ -94,9 +88,9 @@ function ClientReviews() {
                               
                               <figcaption>
                                 <blockquote className="bsb-blockquote-icon mb-4">
-                                We were looking for a company to help us with our branding, including a website and marketing materials. Bsecure created a brand identity that we loved and worked with us to develop a logo that perfectly represents our company.{" "}
+                                "The personalized service I received from Bsecure Advisory was top-notch. From understanding my business goals to finding the right financial product, they guided me every step of the way. Their extensive network of banks and NBFCs gave me access to the best deals in the market."{" "}
                                 </blockquote>
-                                <h4 className="mb-2">Luke Reeves</h4>
+                                <h4 className="mb-2">Anita Joshi </h4>
                                 <h5 className="fs-6 text-warning mb-0">
                                   <i class="bi bi-star-fill"></i>{" "}
                                   <i class="bi bi-star-fill"></i>{" "}
